@@ -1,0 +1,27 @@
+{
+  "name": "algorithm-and-data-structure",
+  "version": "1.0.0",
+  "description": "this repo will have my journey to learn algorithm and data structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moelzanaty3/algorithm-and-data-structure.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moelzanaty3/algorithm-and-data-structure/issues"
+  },
+  "homepage": "https://github.com/moelzanaty3/algorithm-and-data-structure#readme",
+  "volta": {
+    "node": "18.13.0",
+    "yarn": "4.0.2"
+  },
+  "dependencies": {
+    "prettier": "^3.1.0"
+  }
+}
