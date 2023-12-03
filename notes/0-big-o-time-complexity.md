@@ -163,19 +163,23 @@ the function above takes an array of toys and prints each toy with every other t
 *Example:*
 
 ```js
-function findToy(toys) {
-  if (toys.length === 1) {
-    return toys[0];
-  }
+function findToy(toys, index = 0) {
+ if (index >= toys.length) {
+ return [];
+ }
 
-  return findToy(toys.slice(1));
+ const subset = findToy(toys, index + 1);
+ return [...subset, toys[index], ...subset.map(item => toys[index] + ", " + item)];
 }
 
 const toys = ["ball", "car", "doll", "lego", "puzzle", "robot", "train"];
-findToy(toys);
+const allSubsets = findToy(toys);
+console.log(allSubsets);
 ```
 
-the function above takes an array of toys and returns the first toy in the array, it uses recursion to solve the problem, In the code above, the algorithm specifies a growth rate that doubles every time the input data set is added. so it's exponential time.
+now the function will generates all possible subsets of the `toys` array. For each element, it either includes it or excludes it in every subset, effectively creating an exponential number of subsets (2^n) where 'n' is the number of elements in the `toys` array.
+
+This approach will making it less efficient for larger input arrays due to the exponential growth in the number of subsets generated.  In the code above, the algorithm specifies a growth rate that doubles every time the input data set is added. so it's exponential time.
 
 > also, there are other complexities like Linearithmic time complexity (O(n log n)), Factorial time complexity (O(n!)), and Cubic time complexity (O(n^3)).
 
