@@ -163,17 +163,21 @@ the function above takes an array of toys and prints each toy with every other t
 *Example:*
 
 ```js
-function findToy(toys, index = 0) {
- if (index >= toys.length) {
- return [];
- }
-
- const subset = findToy(toys, index + 1);
- return [...subset, toys[index], ...subset.map(item => toys[index] + ", " + item)];
+function getAllSubsets (arr, index, currentSubset, allSubsets) => {
+  if (index === arr.length) {
+    allSubsets.push([...currentSubset]);
+    return;
+  }
+  getAllSubsets(arr, index + 1, currentSubset, allSubsets);
+  currentSubset.push(arr[index]);
+  getAllSubsets(arr, index + 1, currentSubset, allSubsets);
+  currentSubset.pop();
+  return allSubsets;
 }
 
 const toys = ["ball", "car", "doll", "lego", "puzzle", "robot", "train"];
-const allSubsets = findToy(toys);
+const allSubsets = getAllSubsets(toys, 0, [], []);
+console.log(allSubsets.length); // 128 which is 2^7 (2^toys.length)
 console.log(allSubsets);
 ```
 
