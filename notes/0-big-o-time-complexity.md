@@ -80,23 +80,15 @@ In plain terms, the algorithm will run input + 2 times, where input can be any n
 
 In Big O, there are six major types of complexities (time and space):
 
-╔══════════════════╦═════════════════╗
-║       Name       ║ Time Complexity ║
-╠══════════════════╬═════════════════╣
-║ Constant Time    ║       O(1)      ║
-╠══════════════════╬═════════════════╣
-║ Logarithmic Time ║     O(log n)    ║
-╠══════════════════╬═════════════════╣
-║ Linear Time      ║       O(n)      ║
-╠══════════════════╬═════════════════╣
-║ Quasilinear Time ║    O(n log n)   ║
-╠══════════════════╬═════════════════╣
-║ Quadratic Time   ║      O(n^2)     ║
-╠══════════════════╬═════════════════╣
-║ Exponential Time ║      O(2^n)     ║
-╠══════════════════╬═════════════════╣
-║ Factorial Time   ║       O(n!)     ║
-╚══════════════════╩═════════════════╝
+|       Name        | Time Complexity |
+|-------------------|-----------------|
+| Constant Time     |      O(1)       |
+| Logarithmic Time  |    O(log n)     |
+| Linear Time       |      O(n)       |
+| Quasilinear Time  |   O(n log n)    |
+| Quadratic Time    |     O(n^2)      |
+| Exponential Time  |     O(2^n)      |
+| Factorial Time    |      O(n!)      |
 
 the above list is sorted from the best to the worst, it basically used to express the performance of algorithms or the complexity of algorithms based on the input. so we can say that the best algorithm is the one that has the least time complexity and the worst algorithm is the one that has the highest time complexity.
 
