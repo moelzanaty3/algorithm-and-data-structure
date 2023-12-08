@@ -19,7 +19,11 @@ Hi there 👋, in this note, we will talk about Big O Notation, what is it? why 
 
 ## What is Big O Notation?
 
-In simple words, it is a metric for determining an algorithm's efficiency. It's a way to compare how fast an algorithm is, it gives an estimate of how long it takes your code to run on different sets of inputs. Also known as the algorithm's upper bound since it analyses the worst-case situation.
+In simple words, Big O is theoretical definition of the complexity of an algorithm as function of the size.a notation used to describe  complexity and what i mean by notation  is that it simplifies everything in the algorithm down into a single variable
+
+Big O is a useful notation for  understanding both time and space  complexity but only when comparing  amongst algorithms that solve the same  problem  the last bit in that definition of Big O  is a function of the size and all this  means is that Big O measures complexity  as the input size grows because it's not  important to understand how an algorithm  performs in a single data set but in all  possible data sets  you will
+
+also see Big O referred to as  the upper bound of the algorithm and  what that means is that Big O measures  how the algorithm performs in the worst  case scenario  so that's all Big O is  nothing special
 
 > Tip💡: Imagine you're playing a game. Sometimes, things go perfectly from the start, and you finish quickly. That's like the best way things can happen! But there are times when things get really tricky, and it's harder to finish the game. We think about these tricky times because they help us make sure we're always doing at least as well as the hardest part. It's like knowing we'll always do our best or even better than the hardest part of the game!
 
@@ -119,6 +123,10 @@ The next question that comes to mind is how you know which algorithm has which t
 
 - **Definition:** An algorithm operates in logarithmic time complexity (O(log n)) when it reduces the size of the input data in each step without needing to examine all values.
 
+> TIP💡: Logarithmic simply is the opposite of exponential, so if you have an exponential function like 2^x, the logarithmic function is log2(x).
+
+![log-exponential](./images/log-exponential.png)
+
 - **Example**
 
   ```javascript
@@ -163,6 +171,8 @@ The next question that comes to mind is how you know which algorithm has which t
     3. Continue dividing the search space until the value is found or the boundaries converge.
 
 > TIP💡: Algorithms with logarithmic time complexity are frequently employed in binary trees or binary search operations. They efficiently handle large datasets by reducing the search space with each iteration, making them highly efficient for sizable inputs.
+
+often hear algorithms with logarithmic called sublinear algorithms, which is a more general term that includes any algorithm that is less than linear time complexity, normally becuase it's more efficient than linear time complexity.
 
 ### Linear Time - O(n) Algorithm 📈
 
