@@ -5,7 +5,7 @@ Hi there 👋, in this note, we will talk about Big O Notation, what is it? why 
 - [Big O Time Complexity](#big-o-time-complexity)
   - [What is Big O Notation?](#what-is-big-o-notation)
   - [Why do we need Big O Notation?](#why-do-we-need-big-o-notation)
-  - [Efficiency](#efficiency)
+  - [Complexity Analysis](#complexity-analysis)
     - [Time complexity](#time-complexity)
     - [Space complexity](#space-complexity)
   - [Time Complexities](#time-complexities)
@@ -19,29 +19,79 @@ Hi there 👋, in this note, we will talk about Big O Notation, what is it? why 
 
 ## What is Big O Notation?
 
-In simple words, Big O is theoretical definition of the complexity of an algorithm as function of the size.a notation used to describe  complexity and what i mean by notation  is that it simplifies everything in the algorithm down into a single variable
+<table>
+  <tr>
+    <td>
+
+Imagine you have a huge box of `LEGO blocks` and you want to find a specific blue block. Big O notation is like a way of describing how long it might take you to find that block. So if you have a box of 10 blocks, it might take you 10 seconds to find that block. If you have a box of 100 blocks, it might take you 100 seconds to find that block. If you have a box of 1000 blocks, it might take you 1000 seconds to find that block. So the time it takes you to find that block is directly proportional to the size of the box. And that's what Big O notation is. It's a way of describing how long it might take you to find that block as the size of the box grows.
+
+**Technically speaking, Big O is theoretical definition of the complexity of an algorithm as function of the size. a notation used to describe  complexity and what i mean by notation  is that it simplifies everything in the algorithm down into a single variable**
 
 Big O is a useful notation for  understanding both time and space  complexity but only when comparing  amongst algorithms that solve the same  problem  the last bit in that definition of Big O  is a function of the size and all this  means is that Big O measures complexity  as the input size grows because it's not  important to understand how an algorithm  performs in a single data set but in all  possible data sets  you will
 
-also see Big O referred to as  the upper bound of the algorithm and  what that means is that Big O measures  how the algorithm performs in the worst  case scenario  so that's all Big O is  nothing special
-
-> Tip💡: Imagine you're playing a game. Sometimes, things go perfectly from the start, and you finish quickly. That's like the best way things can happen! But there are times when things get really tricky, and it's harder to finish the game. We think about these tricky times because they help us make sure we're always doing at least as well as the hardest part. It's like knowing we'll always do our best or even better than the hardest part of the game!
+> TIP💡: Big O referred to as  the `upper bound` of the algorithm and  what that means is that Big O measures  how the algorithm performs in the worst  case scenario  so that's all Big O is  nothing special.
+    </td>
+    <td>
+      <img src="./images/lego-blocks.png"  alt="LEGO blocks">
+    </td>
+  </tr>
+</table>
 
 ## Why do we need Big O Notation?
+
+Every problem has multiple solutions, and each solution has its own pros and cons. So when you're trying to solve a problem, you need to consider the time and space complexity of each solution to determine which one is the best for your use case. Big O notation is a way to measure the efficiency of an algorithm, and it's used to compare different solutions to the same problem. It's also used to determine the best solution for a given problem.
+
+for example, let's say we need to implement a function that reverse a string, we can do it in many ways, but we will focus on three ways:
+
+- Using the built-in `reverse` method.
+
+  ```js
+  function reverseString(str) {
+    return str.split("").reverse().join("");
+  }
+  ```
+
+- Using a `for` loop.
+
+  ```js
+  function reverseString(str) {
+    let reversed = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+      reversed += str[i];
+    }
+    return reversed;
+  }
+  ```
+
+- Using the `reduce` method.
+
+  ```js
+  function reverseString(str) {
+    return str.split("").reduce((reversed, character) => {
+      return character + reversed;
+    }, "");
+  }
+  ```
+
+more implementations can be found [here](https://stackoverflow.com/a/51751393/18863976), but my point is that we have multiple solutions to the same problem, and each solution has its own pros and cons, so we need to know which solution is the best for our use case, and that's where Big O notation comes in so Is Big Notation important? the answer is
 
 - Yes, because it's important to know how long your code will take to run.
 - It's important to know how much memory your code will take up.
 - It's important to know how your code will scale.
 
-> TIP💡: The world we live in today consists of complicated apps and software, each running on various devices and each having different capabilities. Some devices like desktops can run heavy machine learning software, but others like phones can only run apps. So when you create an application, you’ll need to optimize your code so that it runs smoothly across devices to give you an edge over your competitors. ⏤ [Big O Notation Cheat Sheet](https://flexiple.com/algorithms/big-o-notation-cheat-sheet)
+> NOTE💡: The world we live in today consists of complicated apps and software, each running on various devices and each having different capabilities. Some devices like desktops can run heavy machine learning software, but others like phones can only run apps. So when you create an application, you’ll need to optimize your code so that it runs smoothly across devices to give you an edge over your competitors. ⏤ [Big O Notation Cheat Sheet](https://flexiple.com/algorithms/big-o-notation-cheat-sheet)
 
-## Efficiency
+## Complexity Analysis
 
-*In computer science, Big O Notation is a mathematical function used to determine the difficulty of an algorithm.* Efficiency is measured in two ways: time complexity and space complexity:-
+The process of determining how efficient an algorithm is. Complexity analysis usually involves finding both the time complexity and the space complexity of an algorithm.
+
+simply it determines how `good` an algorithm is, and by `good` I mean how fast it runs and how much memory it takes up. weather it's `better` than another algorithm or not.
 
 ### Time complexity
 
-Basically it's a way to measure of how fast an algorithm runs, it describes the amount of time necessary to execute an algorithm. When ⏱️ analyzing an algorithm's time complexity, we encounter three scenarios: *best-case*, *average-case*, and *worst-case*, each portraying different performance scenarios. Suppose we have the following unsorted list [1, 5, 3, 9, 2, 4, 6, 7, 8] and we need to find the index of a value in this list using linear search.
+A measure of how fast an algorithm runs, it describes the amount of time necessary to execute an algorithm.
+
+When ⏱️ analyzing an algorithm's time complexity, we encounter three scenarios: *best-case*, *average-case*, and *worst-case*, each portraying different performance scenarios. Suppose we have the following unsorted list [1, 5, 3, 9, 2, 4, 6, 7, 8] and we need to find the index of a value in this list using linear search.
 
 - *Best-case*: 🌟 this is the complexity of solving the problem for the best input. In our example, the best case would be to search for the value 1. Since this is the first value of the list, it would be found in the first iteration.
 
@@ -51,46 +101,98 @@ Basically it's a way to measure of how fast an algorithm runs, it describes the 
 
 Generally, when discussing an algorithm's time complexity, emphasis is often placed on *the worst-case* scenario as it illustrates the maximum time required for a given input size, providing a conservative estimation of performance.
 
-It is not a measure of the actual time taken to run an algorithm, instead, it is a measure of how the time taken scales with change in the input length. so we are not talking about seconds or milliseconds, or how many cycles it takes to run an algorithm, but rather how many operations it takes to run an algorithm as *a function of the size of the input*.
+worth to mention also that the time complexity is not a measure of the actual time taken to run an algorithm, instead, it is a measure of how the time taken scales with change in the input length. so we are not talking about seconds or milliseconds, or how many cycles it takes to run an algorithm, but rather how many operations it takes to run an algorithm as *a function of the size of the input*.
+
+the question now is **What's function of the size of the input 😂?** in terms of time:-
+
+the `Function of the size of the input` in terms of time means that the time it takes for a computer program (or algorithm) to finish depends on how many items it has to work with.
+
+Let's look at two examples using JavaScript, which involve doing something with an array of numbers.
+
+- Example 1: Fixed Number of Steps
+
+  ```javascript
+  let arr = [1, 2, 3, ...]; // This is an array with some numbers
+
+  for (let i = 0; i < 4; i++) {
+    console.log(arr[1]); 
+  }
+  ```
+
+  In this example, no matter how big the array is, the program always does the same thing **four times**. It's like saying, "No matter how many toys I have, I will only play with the fourth one, four times." This takes the same amount of time, whether you have 10 toys or 1000. We call this O(1) or constant time because it doesn't change with the number of items.
+
+- Example 2: Steps Depend on Number of Items
+
+  ```javascript
+  let arr = [1, 2, 3, ...]; // This is an array with some numbers
+
+  for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
+  }
+  ```
+
+  In this second example, the program looks at each number in the array, one by one. If you have 5 numbers, it looks 5 times. If you have 100 numbers, it looks 100 times. The more numbers you have, the longer it takes. This is like saying, "I will look at each toy I have, one by one." If you have more toys, it takes more time. We call this O(n), where 'n' is the number of items, because the time it takes grows with the number of items.
+
+So, when we say `function of the size of the input` about time, we're talking about how the number of items in the input (like numbers in an array) affects how long the program takes to run.
+
+![Big O Complexity Chart Time](./images/big-o-complexity.png "© phan801")
 
 ### Space complexity
 
-- measure of how much memory an algorithm takes up. simply compute how much space the variables in an algorithm/a program take up.
-- The best algorithms/programs should have the least space complexity. The lesser the space used, the faster it executes as *a function of the size of the input*.
+A measure of how much auxiliary memory an algorithm takes up, simply compute how much space the variables in an algorithm take up.
 
-the question now is *What's function of the size of the input 😂?*
+> The best algorithms should have the least space complexity. The lesser the space used, the faster it executes as *a function of the size of the input*.
 
-to fully understand this, let's take an example of a function that takes an array of numbers and returns the sum of all the numbers in the array.
+the question now is **What's function of the size of the input 😂?** in terms of space complexity:-
 
-```js
-function sum(arr) {
-  let total = 0;
-  for (let i = 0; i < arr.length; i++) {
-    total += arr[i];
+Talking about `space complexity` is like thinking about how much room you need in your backpack for your school stuff. Just like your backpack can only hold so many books and pencils, a computer program can only use a certain amount of space (or memory) on your computer.
+
+When we say `function of the size of the input` in terms of space complexity, we're looking at how much extra space a computer program needs based on the number of things it's working with.
+
+Let's use two JavaScript examples to understand this better:
+
+- Example 1: Fixed Space Usage
+
+  ```javascript
+  function sumOfFirstTwo(arr) {
+      return arr[0] + arr[1];
   }
-  return total;
-}
-```
+  ```
 
-![function sum](./images/function-as-input.png)
+  In this program, no matter how big the array `arr` is, we only use a tiny bit of extra space to store the sum of the first two numbers. It's like only needing space for two pencils in your backpack, regardless of how many pencils you actually have. This has a constant space complexity, or O(1), because it doesn't need more space if you have more items.
 
-Looking at the image above, we only have three statements. Still, because there is a loop, the second statement will be executed based on the input size, so if the input is four, the second statement (statement 2) will be executed four times, meaning the entire algorithm will run six (4 + 2) times.
+- Example 2: Space Depends on Number of Items
 
-we can see that the function has a for loop that iterates over the array and adds each element to the total variable, so the number of operations that the function will perform is equal to the number of elements in the array, so if the array has 10 elements, the function will perform 10 operations, if the array has 100 elements, the function will perform 100 operations, and so on.
+  ```javascript
+  function copyArray(arr) {
+      let newArr = [];
+      for (let i = 0; i < arr.length; i++) {
+          newArr.push(arr[i]);
+      }
+      return newArr;
+  }
+  ```
 
-In plain terms, the algorithm will run input + 2 times, where input can be any number. This shows that it's expressed in terms of the input. In other words, it is a function of the input size. ⏤ [Big O Cheat Sheet – Time Complexity Chart](https://www.freecodecamp.org/news/big-o-cheat-sheet-time-complexity-chart/)
+  In this second example, we make a new array that's just like the one we started with. If your original array has 5 numbers, the new array also has 5 numbers. If it has 100, the new one does too. It's like needing a bigger backpack if you have more books. The more items you have, the more space you need. This is called linear space complexity, or O(n), where `n` is the number of items, because the space needed grows with the number of items.
+
+So, `function of the size of the input` in terms of space complexity means how the amount of memory a program needs changes based on the number of items it's dealing with.
 
 ## Time Complexities
 
-In Big O, there are six major types of complexities (time and space):
+The performance of an algorithm, in terms of speed and memory usage, isn't constant; it can vary based on the input. So, how can we articulate the efficiency of an algorithm? 🤔
+
+💡 Big O Notation comes into play here. It's a potent instrument that enables us to express the space-time complexity of an algorithm in relation to the size of its input.
+
+In Big O, there are six major types of complexities (time and space) and The following are examples of common complexities and their Big O notations, ordered from fastest to slowest::
 
 |       Name        | Time Complexity |
 |-------------------|-----------------|
 | Constant Time     |      O(1)       |
 | Logarithmic Time  |    O(log n)     |
 | Linear Time       |      O(n)       |
-| Quasilinear Time  |   O(n log n)    |
+| Log-linear Time   |   O(n log n)    |
 | Quadratic Time    |     O(n^2)      |
+| Cubic Time        |     O(n^3)      |
 | Exponential Time  |     O(2^n)      |
 | Factorial Time    |      O(n!)      |
 
@@ -104,7 +206,7 @@ The next question that comes to mind is how you know which algorithm has which t
 
 - **Definition:** An algorithm operates in constant time (O(1)) when its execution is independent of the input data size (n). Regardless of the input's scale, the algorithm's runtime remains consistent.
 
-- **Example:**
+- ***Example:***
 
   ```js
   function getFirstFruit(fruits) {
@@ -116,16 +218,15 @@ The next question that comes to mind is how you know which algorithm has which t
   ```
 
 - **Explanation:** The provided function `getFirstFruit` retrieves the first element from an array. Regardless of the array's length, the function's runtime remains constant because it only accesses the initial value.
-
-> no matter how many fruits you have it will always return '🍎' which is the first fruit in the array, so it's constant time.
+  - **no matter how many fruits you have it will always return '🍎' which is the first fruit in the array, so it's constant time.**
 
 ### Logarithmic Time - O(log n) Algorithm 📉
 
 - **Definition:** An algorithm operates in logarithmic time complexity (O(log n)) when it reduces the size of the input data in each step without needing to examine all values.
 
-> TIP💡: Logarithmic simply is the opposite of exponential, so if you have an exponential function like 2^x, the logarithmic function is log2(x).
+  > TIP💡: Logarithmic simply is the opposite of exponential, so if you have an exponential function like 2^x, the logarithmic function is log2(x).
 
-![log-exponential](./images/log-exponential.png)
+  ![log-exponential](./images/log-exponential.png)
 
 - **Example**
 
@@ -170,9 +271,9 @@ The next question that comes to mind is how you know which algorithm has which t
     2. Adjust the boundaries based on whether the value is greater or smaller than the middle element.
     3. Continue dividing the search space until the value is found or the boundaries converge.
 
-> TIP💡: Algorithms with logarithmic time complexity are frequently employed in binary trees or binary search operations. They efficiently handle large datasets by reducing the search space with each iteration, making them highly efficient for sizable inputs.
+  > TIP💡: Algorithms with logarithmic time complexity are frequently employed in binary trees or binary search operations. They efficiently handle large datasets by reducing the search space with each iteration, making them highly efficient for sizable inputs.
 
-often hear algorithms with logarithmic called sublinear algorithms, which is a more general term that includes any algorithm that is less than linear time complexity, normally becuase it's more efficient than linear time complexity.
+- Often hear algorithms with logarithmic called sub-linear algorithms, which is a more general term that includes any algorithm that is less than linear time complexity, normally because it's more efficient than linear time complexity.
 
 ### Linear Time - O(n) Algorithm 📈
 
@@ -261,7 +362,7 @@ The provided JavaScript code demonstrates the bubble sort algorithm using a samp
 
 - **Explanation:** Exponential time complexity becomes notably resource-intensive as the input size increases. Brute-force attacks, such as systematically checking all possible elements of a password, exemplify this complexity. Longer passwords become considerably more secure due to the exponentially increasing resources required to crack them compared to shorter ones.
 
-- **Example: Recursive Fibonacci Algorithm**
+- ***Example:* Recursive Fibonacci Algorithm**
 
   ```javascript
   function fibonacci(n) {
@@ -282,17 +383,96 @@ The provided JavaScript code demonstrates the bubble sort algorithm using a samp
 
 - **Importance:** Exponential time complexity algorithms, like the recursive Fibonacci computation, showcase the immense resource requirements and computational burden as the input size expands. Understanding such complexities is crucial when designing efficient algorithms.
 
-> TIP💡: there are other complexities like Linearithmic time complexity (O(n log n)), Factorial time complexity (O(n!)), and Cubic time complexity (O(n^3)).
+  > TIP💡: there are other complexities like Linearithmic time complexity (O(n log n)), Factorial time complexity (O(n!)), and Cubic time complexity (O(n^3)).
 
 ## Key Considerations in Analyzing Time Complexity ⏱️
 
-- **Algorithmic Complexity Analysis Rules:**
-  - **Growth Relative to Input:** Time complexity analysis considers the growth pattern concerning the input size.
-  - **Disregarding Constants:** Constants in time complexity calculations are omitted since they don't significantly affect scalability.
-  - **Emphasis on Worst Case Scenario:** Evaluating the algorithm's worst-case scenario provides a crucial measurement of its efficiency.
-  - **Largest Complexity Among Operations:** When an algorithm comprises multiple operations, its time complexity is defined by the operation with the most substantial impact on execution time.
-  - **Focus on Input:** Time complexity focuses on how an algorithm's runtime scales concerning changes in input size.
-  - **Neglecting Constants:** Discarding constants aids in understanding the algorithm's growth trend without the influence of negligible factors.
+- **Algorithmic Complexity Analysis Rules**:
+  - **Growth Relative to Input**: Time complexity analysis considers the growth pattern in relation to the input size. I mean how the time complexity of an algorithm changes as the size of the input changes.
+    - *Example:* If you have an algorithm that loops through an array of n elements, the time complexity is O(n). The running time grows linearly with the size of the input.
+
+    ```javascript
+      function printElements(arr) {
+          arr.forEach(element => {
+              console.log(element);
+          });
+      }
+    ```
+
+  - **Disregarding Constants**: Constants in time complexity calculations are omitted as they don't significantly affect scalability.
+    - *Example:*  If you have an algorithm that loops through an array twice, the time complexity is still O(n), not O(2n). We disregard the constant factor of 2.
+
+      ```javascript
+        function printElementsTwice(arr) {
+            arr.forEach(element => {
+                console.log(element);
+            });
+            arr.forEach(element => {
+                console.log(element);
+            });
+        }
+      ```
+
+  - **Emphasis on Worst Case Scenario**: Evaluating the algorithm's worst-case scenario provides a crucial measurement of its efficiency.
+    - *Example:* In a linear search algorithm, the worst-case scenario is when the element is at the end of the array or not present at all. The time complexity in this case is `O(n)`.
+
+      ```javascript
+
+      function linearSearch(arr, target) {
+          for(let i = 0; i < arr.length; i++) {
+              if(arr[i] === target) {
+                  return i;
+              }
+          }
+          return -1;
+      }
+
+      ```
+
+  - **Largest Complexity Among Operations**: When an algorithm comprises multiple operations, its time complexity is defined by the operation with the most substantial impact on execution time.
+    - *Example:* If an algorithm has two parts, one with time complexity O(n) and another with time complexity O(n^2), the overall time complexity is O(n^2), which is the larger of the two.
+
+      ```javascript
+      function complexAlgorithm(arr) {
+          // Part 1: O(n)
+          arr.forEach(element => {
+              console.log(element);
+          });
+
+          // Part 2: O(n^2)
+          for(let i = 0; i < arr.length; i++) {
+              for(let j = 0; j < arr.length; j++) {
+                  console.log(arr[i], arr[j]);
+              }
+          }
+      }
+      ```
+
+  - **Focus on Input**: Time complexity focuses on how an algorithm's runtime scales with changes in input size. it mainly focus on the importance of considering the size of the input when analyzing the time complexity of an algorithm. It emphasizes that the time complexity is not about the actual time in seconds or milliseconds it takes to run the algorithm, but how the running time scales with changes in the size of the input.
+    - *Example:* an algorithm with time complexity O(log n) will have its running time increase logarithmically as the input size increases.
+
+      ```javascript
+      function binarySearch(sortedArray, target) {
+          let left = 0;
+          let right = sortedArray.length - 1;
+
+          while(left <= right) {
+              const mid = Math.floor((left + right) / 2);
+
+              if(sortedArray[mid] === target) {
+                  return mid;
+              }
+
+              if(sortedArray[mid] < target) {
+                  left = mid + 1;
+              } else {
+                  right = mid - 1;
+              }
+          }
+
+          return -1;
+      }
+      ```
 
 This set of rules guides the analysis of time complexity, emphasizing the significance of considering the most influential operation, disregarding constants, and prioritizing worst-case scenarios for accurate assessments.
 
